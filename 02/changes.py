@@ -83,4 +83,7 @@ for num in itertools.cycle(data):
         print(freq); break
     seen.add(freq)
 
-
+print('again, pythonic.')
+from itertools import accumulate, cycle
+seen = set([0])
+print(next(f for f in accumulate(cycle(data)) if f in seen or seen.add(f)))
