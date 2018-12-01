@@ -71,9 +71,8 @@
 #        seen.add(result)
 #    print('Done.  Found %d' % result)
 
-
 import itertools
-data = [int(x) for x in open("input.txt").readlines()]
+data = [int(x) for x in open('input.txt','r').readlines()]
 print(sum(data))
 
 freq = 0
