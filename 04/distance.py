@@ -22,13 +22,17 @@ def LD(s, t):
 
 if __name__ == "__main__":
     box_ids = get_input()
-    neighbors = set()
-    for box_id in box_ids:
-        for box_id2 in box_ids:
-            if LD(box_id, box_id2) == 1:
-                print('%s, %s' % (box_id, box_id2))
-                neighbors.add(box_id)
-                neighbors.add(box_id2)
-    print(neighbors)
-    print(len(neighbors))
+    for x in box_ids:
+        for y in box_ids:
+            diff = 0
+            for i in range(len(x)):
+                if x[i] != y[i]:
+                    diff += 1
+            if diff == 1:
+                ans = []
+                for i in range(len(x)):
+                    if x[i] == y[i]:
+                        ans.append(x[i])
+                print(''.join(ans))
+#                print('1 difference:  ' + x.strip() + ' ' + y.strip())
     
