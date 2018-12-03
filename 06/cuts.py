@@ -9,7 +9,7 @@ data = get_input()
 claims = []
 for d in data:
 #    claim_id, start_x, start_y, width, height
-    numbers = list(map(int, re.findall(r'\d+', d)))
+    numbers = list(map(int, re.findall(r'-?\d+', d)))
     claims.append(numbers)
 
 material = defaultdict(list)
@@ -25,6 +25,7 @@ for (claim_id, start_x, start_y, width, height) in claims:
             material[(i,j)].append(claim_id)
 
 print("square inches of overlap:  %d" % len([cut for cut in material if len(material[cut]) > 1]))
+print("areas that don't overlap:  %s" % [cut for cut in overlaps if len(overlaps[cut]) == 0][0])
     
     
     
