@@ -18,15 +18,14 @@ for (claim_id, start_x, start_y, width, height) in claims:
     overlaps[claim_id] = set()
     for i in range(start_x, start_x + width):
         for j in range(start_y, start_y + height):
-            if material[(i+j)]:
-                for number in material[(i+j)]:
+            if material[(i,j)]:
+                for number in material[(i,j)]:
                     overlaps[number].add(claim_id)
                     overlaps[claim_id].add(number)
-            material[(i+j)].append(claim_id)
+            material[(i,j)].append(claim_id)
 
-print("a", len([cut for cut in material if len(material[cut]) > 1]))
-print("b", [k for k in overlaps if len(overlaps[k]) == 0])
-    
+print("a", len([cut for cut in m if len(material[cut]) > 1]))
+print("b", [cut for cut in overlaps if len(overlaps[cut]) == 0][0])
     
     
     
