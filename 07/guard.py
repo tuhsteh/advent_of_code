@@ -4,6 +4,7 @@ from collections import defaultdict
 import re
 
 data = get_input(filename = 'sorted_input.txt')
+data.sort()
 guards = defaultdict(list)
 
 
@@ -20,9 +21,13 @@ def get_sleep_minutes(i, data, guards):
     end = None
     while True:
         i += 1
-        date, time, msg = parse_log(data[i])
+        try:
+            date, time, msg = parse_log(data[i])
+        except Exception as e:
+            print("after %d loops, %s" % (i,e))        
+            return i
         if -1 < msg.find('Guard'):
-            return
+            return i
         if -1 < msg.find('asleep'):
             start = time
         if -1 < msg.find('wakes'):
@@ -37,25 +42,26 @@ def get_sleep_minutes(i, data, guards):
 for i in range(len(data)):
     date, time, msg = parse_log(data[i])
     
-    import ipdb
-    ipdb.set_trace()
+#    import ipdb
+#    ipdb.set_trace()
     
     if -1 < msg.find('Guard'):
         guard_id = re.findall(r'\#(\d+)', msg)[0]
         guards[guard_id] = list()
-        get_sleep_minutes(i, data, guards)
+        i = get_sleep_minutes(i, data, guards)
 
 max = -1
 sleepy_guard = None
+map(print, guards)
 for g in guards:
-    total_minutes = len(g)
+    total_minutes = len(guards[g])
     if total_minutes > max:
         sleepy_guard = g
         max = total_minutes
 
 print(sleepy_guard)
 print(max)
-
+print(int(max) * int(sleepy_guard))
 
     
         
