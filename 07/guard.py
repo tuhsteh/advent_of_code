@@ -72,7 +72,11 @@ print(guard)
 print(minute)
 print(guard * minute)
 
-    
+(guard, minute, count) = max([
+    (guard, minute, sum(1 for start, end in guards[guard] if start <= minute < end))
+    for minute in range(60) for guard in guards], key=lambda i: i[2])
+
+print('part 2:', guard * minute)
         
         
         
