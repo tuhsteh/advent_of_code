@@ -5,29 +5,17 @@ from util import get_input
 #chain = get_input(filename = 'sample.txt')[0]
 chain = get_input()[0]
 #print(chain)
+original_length = len(chain)
 
-#import ipdb
-#ipdb.set_trace()
-i = None
-while True:
-    changes = None
-    for i in range(0, len(chain)-1):
-        print(i)
-        changes = 0
-        try:
-            char1,char2 = chain[i],chain[i+1]
-#            print('%s%s' % (char1,char2))
-            if char1.lower() == char2.lower():
-#                print('chars are same letter:  %s %s' % (char1,char2))
-                if char1 is not char2:
-#                    print('removing %s and %s' % (char1,char2))
-                    chain = chain[:i] + chain[i+2:]
-#                    print('chain:  %s' % chain)
-                    changes = 1
-        except:
-            pass
-    if changes == 0:
-        break
+chain1 = chain
+length1 = len(chain)
+length2 = length1 + 1
+while length1 != length2:
+    length2 = length1
+    for c in 'qwertyuiopasdfghjklzxcvbnm':
+        chain1 = chain1.replace(c+c.upper(),'').replace(c.upper()+c,'')
+    length1 = len(chain1)
 
-print(len(chain))
-
+#print("resulting polymer:  %s" % chain1)
+print("old length:  %d" % original_length)
+print("reacted length:  %d" % length1)
