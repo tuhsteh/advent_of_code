@@ -14,6 +14,10 @@ max_x = max(x for x,y in Points)+int(10000/len(Points))+1
 min_y = min(y for x,y in Points)-int(10000/len(Points))-1
 max_y = max(y for x,y in Points)+int(10000/len(Points))+1
 
+print("extent of width:  %d - %d" % (min_x, max_x))
+print("extent of height: %d - %d" % (min_y, max_y))
+
+
 mapping = {}
 
 in_region = set()
