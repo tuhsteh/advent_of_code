@@ -17,7 +17,6 @@ for t in range(100000):
     max_y = max([y for x,y,_,_ in points])
     W = 100
     if min_x+W >= max_x and min_y + W >= max_y:
-        print(t,min_x, max_x, min_y, max_y)
         for y in range(min_y, max_y+1):
             for x in range(min_x, max_x+1):
                 if (x,y) in [(px,py) for px,py,_,_ in points]:
